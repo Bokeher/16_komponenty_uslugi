@@ -1,0 +1,21 @@
+<label class="check">
+    <input type="checkbox" [(ngModel)]="showImage"> Pokaż zdjęcie
+</label>
+
+<p class="akapit">
+    {{car.brand}} {{car.model}}
+    <ng-template #noImage>
+        <p class="center">Brak zdjęcia</p>
+    </ng-template>
+</p> <br>
+<img src="{{car.image}}" [class.zdjecie]="aktywna" *ngIf="showImage else noImage">
+
+<ng-container [ngSwitch]="car.type">
+    <p *ngSwitchCase="type.sport">SPORTOWY</p>
+    <p *ngSwitchCase="type.terrain">TERENOWY</p>
+    <p *ngSwitchCase="type.camper">KAMPER</p>
+</ng-container>
+<p>DANE: </p>
+<ul>
+    <li *ngFor="let item of car.data">{{item}}</li>
+</ul>
